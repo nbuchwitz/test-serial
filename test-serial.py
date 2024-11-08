@@ -128,7 +128,13 @@ def main() -> None:
     if args.mode == "server":
         interface.echo_server()
     else:
-        interface.echo_client()
+        try:
+            interface.echo_client()
+        except Exception as e:
+            print(f"ERROR: {e}")
+            sys.exit(1)
+
+        print("TEST OK")
 
 
 if __name__ == "__main__":
