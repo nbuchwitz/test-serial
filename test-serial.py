@@ -12,7 +12,7 @@ import serial
 import serial.rs485
 
 
-class InvalidSerial5Reponse(Exception):
+class InvalidSerialReponse(Exception):
     """Missmatch between response and expected reponse."""
 
     def __init__(self, response: bytes, expected_response: bytes) -> None:
@@ -70,7 +70,7 @@ class SerialInterface:
             response = self.port.readline()
 
             if response != expected_response:
-                raise InvalidSerial5Reponse(response, expected_response)
+                raise InvalidSerialReponse(response, expected_response)
 
     def echo_server(self) -> None:
         """Run echo server on serial interface.
