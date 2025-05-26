@@ -42,6 +42,10 @@ class SerialInterface:
 
         self.port = serial.Serial(device, baudrate=baudrate, timeout=timeout)
 
+        # drain RX buffer
+        if self.port.in_waiting > 0:
+            self.port.read(ser.in_waiting)
+
     def echo_client(self, num_runs: int = 10) -> None:
         """Send payload string on serial interface and wait for response.
 
